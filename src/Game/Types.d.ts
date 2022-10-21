@@ -2,6 +2,7 @@ interface Note {
 	x: number
 	y: number
 	name: string
+	isActive: boolean
 }
 type GuitarString = Note[]
 interface Fretboard {

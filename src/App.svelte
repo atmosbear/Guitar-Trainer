@@ -1,18 +1,17 @@
 <script>
-  import Component from "./Component.svelte";
+  import Fretboard from "./Fretboard.svelte";
+  import Header from "./Header.svelte";
+  import ScoreKeeper from "./ScoreKeeper.svelte";
 </script>
 
 <main>
-  <h1>Svelte + Vite</h1>
-  <Component />
+  <Header />
+  <Fretboard />
+  <ScoreKeeper />
 </main>
 
 <style>
   * {
     font-family: "Manjari Thin", sans-serif;
-  }
-
-  h1 {
-    padding-left: 1rem;
   }
 </style>

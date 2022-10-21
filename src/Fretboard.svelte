@@ -8,6 +8,23 @@
 		});
 		notes.push(currString);
 	});
+
+	function answer(note) {
+		if (note === $gStore.currRound.A) {
+			document.body.style.backgroundColor = "green";
+			$gStore.userScore++;
+			$gStore.outOf++;
+			$gStore.createNewRound();
+			$gStore.userScore = $gStore.userScore; // required by Svelte to update the component
+		} else {
+			document.body.style.backgroundColor = "red";
+			$gStore.outOf++;
+			// required by Svelte to update the component
+		}
+		$gStore.userScore = $gStore.userScore;
+		$gStore.outOf = $gStore.outOf;
+	}
+
 	function calculateClass(note) {
 		let possAs = generatePossibleAs(
 			$gStore.level,
@@ -20,9 +37,12 @@
 			note.name === $gStore.currRound.Q.name
 		) {
 			return "question";
-		} else if (note === $gStore.currRound.A) {
+		} else if (note === $gStore.currRound.A && $gStore.devMode) {
 			return "answer";
-		} else if (possAs.includes(note)) {
+		} else if (
+			possAs.includes(note) &&
+			$gStore.guidingHighlightsOn
+		) {
 			return "Panswer";
 		}
 	}
@@ -33,20 +53,14 @@
 		{#each string as note}
 			<button
 				on:click={() => {
-					console.log(calculateClass(note));
+					answer(note);
 				}}
+				disabled={!note.isActive}
 				class={calculateClass(note)}>{note.name}</button
 			>
 		{/each}
 		<br />
 	{/each}
-	{$gStore.currRound.A.x}
-	<button
-		on:click={() => {
-			$gStore.createNewRound();
-			$gStore = $gStore;
-		}}>New</button
-	>
 </div>
 
 <style>
@@ -64,5 +78,6 @@
 		width: 3rem;
 		height: 3rem;
 		font-size: 1.5rem;
+		border-radius: 0.5rem;
 	}
 </style>
