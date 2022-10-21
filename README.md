@@ -1,0 +1,1 @@
+TS support now works and is the default for this branch! :)
