@@ -53,7 +53,7 @@ let soundList = [
 	"4 4 Ds 8 3 Ds 13 1 Ds.mp3",
 	"4 2 Fs 9 1 Fs 14 0.mp3",
 	"4 0 Gs.mp3",
-	"3 5 Gs 9 4 Gs.mp3",
+	"4 5 Gs 9 4 Gs.mp3",
 	"3 5 G 8 4 G 12 3 G.mp3",
 	"3 3 As 8 2 As 13 1 As.mp3",
 	"3 2 F 8 1 F 12 0 F.mp3",
