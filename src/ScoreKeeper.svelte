@@ -1,6 +1,6 @@
 <script>
-	import Fretboard from "./Fretboard.svelte";
 	import { GameState, gStore } from "./Game/Game";
+	import { screenStore } from "./Game/ScreenStore";
 	let percent;
 	$: {
 		percent =
@@ -16,7 +16,16 @@
 
 <div id="wholeBox">
 	<h1>Game Stats:</h1>
-	<div>Level: {$gStore.level}</div>
+	<div>
+		Level: {$gStore.level}
+		<button
+			class="changeButton"
+			on:click={() => {
+				screenStore.set("levelChanger");
+			}}>Change</button
+		>
+	</div>
+
 	<div>
 		Score: {$gStore.userScore} / {$gStore.outOf}
 		({percent}%) ({$gStore.skipped}

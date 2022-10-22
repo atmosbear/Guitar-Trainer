@@ -5,16 +5,27 @@
 <div>
 	<p>Guitar Trainer</p>
 	<button
+		alt="Skip to the next question"
 		id="skipQButton"
 		on:click={() => {
 			$gStore.createNewRound();
 			$gStore.skipped++;
 		}}>Skip</button
 	>
+	<button
+		id="replayButton"
+		on:click={() => {
+			$gStore.createNewRound();
+		}}>Replay sound</button
+	>
 	<button alt="Instructions">?</button>
 </div>
 
 <style>
+	#replayButton {
+		width: 15rem;
+		margin-right: 15px;
+	}
 	#skipQButton {
 		width: 6rem;
 		margin-right: 15px;

@@ -51,13 +51,12 @@ function generatePossibleQs(fretboard: Fretboard, userPossibleQs: Note[] = []): 
 	}
 	return possibles
 }
-
+export let ripplesPerLevel: [number, number][][] = [
+	[[-1, 1], [0, 1], [1, 1]],
+	[[2, 2], [1, 0], [-1, 0]],
+	[[-1, -1]]
+]
 export function generatePossibleAs(level: number, Q: Note, fretboard: Fretboard): Note[] {
-	let ripplesPerLevel: [number, number][][] = [
-		[[-1, 1], [0, 1], [1, 1]],
-		[[2, 2], [1, 0], [-1, 0]],
-		[[-1, -1]]
-	]
 	let ripplesInLevel: [number, number][] = []
 	for (let i = 1; i <= level ;i ++) {
 		if (ripplesPerLevel[i-1] !== undefined)

@@ -69,8 +69,3 @@ let soundList = [
 	"0 3 G 5 2 G 10 1 G.mp3",
 	"0 0 E.mp3"
 	]
-
-// let note = {x: 0, y: 0, name: "E", isActive: true, soundFile:""}
-// note.soundFile = findSoundFileName({x: 0, y: 0, name: "E", isActive: true, soundFile:""})
-// play(note)
-// console.log("a")
