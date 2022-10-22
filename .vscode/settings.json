@@ -12,7 +12,7 @@
 		"vite.config.js": true,
 		"package.json": true,
 		"node_modules": true,
-		"index.html": true,
-		"**/main.ts": true,
+		// "index.html": true,
+		// "**/main.ts": true,
 	}
 }

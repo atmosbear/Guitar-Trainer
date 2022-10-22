@@ -3,6 +3,7 @@ interface Note {
 	y: number
 	name: string
 	isActive: boolean
+	soundFile: string
 }
 type GuitarString = Note[]
 interface Fretboard {

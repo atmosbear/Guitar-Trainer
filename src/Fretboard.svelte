@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { generatePossibleAs, gStore } from "./Game/Game";
+	import { findSoundFileName, play } from "./Game/Sounds";
 	let notes = [];
 	$gStore.fretboard.strings.forEach((string) => {
 		let currString = [];
@@ -53,6 +54,7 @@
 		{#each string as note}
 			<button
 				on:click={() => {
+					play(note);
 					answer(note);
 				}}
 				disabled={!note.isActive}

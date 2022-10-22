@@ -1,5 +1,6 @@
 <script>
-	import { gStore } from "./Game/Game";
+	import Fretboard from "./Fretboard.svelte";
+	import { GameState, gStore } from "./Game/Game";
 	let percent;
 	$: {
 		percent =
@@ -20,6 +21,23 @@
 		Score: {$gStore.userScore} / {$gStore.outOf}
 		({percent}%) ({$gStore.skipped}
 		skipped)
+	</div>
+	<div>
+		Play with high strings: {$gStore.weirdMode ? "on" : "off"}
+
+		<button
+			class="changeButton"
+			on:click={() => {
+				gStore.set(
+					new GameState(
+						$gStore.level,
+						!$gStore.weirdMode
+					)
+				);
+			}}
+		>
+			Change
+		</button>
 	</div>
 	<div>
 		Guiding Highlights: {$gStore.guidingHighlightsOn ? "on" : "off"}

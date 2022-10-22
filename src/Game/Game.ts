@@ -1,8 +1,8 @@
 /// <reference path="./Types.d.ts"/>
-
 import { writable } from "svelte/store"
+import { findSoundFileName } from "./Sounds.js"
 
-function createFretboard(weirdStringsOK: boolean = false): Fretboard {
+export function createFretboard(weirdStringsOK: boolean = false): Fretboard {
 	let n: string[][] = [
 		["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#", "E"],
 		["B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"],
@@ -19,10 +19,12 @@ function createFretboard(weirdStringsOK: boolean = false): Fretboard {
 				let isActive = true
 				if (!weirdStringsOK && y < 2) {
 					isActive = false
-					console.log(y)
 				}
-				s.push({x, y: Math.abs(y-5), name, isActive})
-				everyNote.push({x, y: Math.abs(y-5), name, isActive})
+				let note: Note = {x, y: Math.abs(y-5), name, isActive, soundFile: ""}
+				let soundFile = findSoundFileName(note)
+				note.soundFile = soundFile
+				s.push(note)
+				everyNote.push(note)
 			})
 		strings.push(s)
 	})
@@ -98,7 +100,7 @@ function createRound(level, fretboard: Fretboard): Round {
 	return {Q, A}
 }
 
-class GameState {
+export class GameState {
 	public fretboard: Fretboard
 	public level: number
 	public currRound: Round
@@ -108,7 +110,8 @@ class GameState {
 	public guidingHighlightsOn: boolean
 	public devMode: boolean
 	public skipped: number
-	constructor(level: number, allowWeird = false, fretboard: Fretboard = createFretboard(allowWeird)) {
+	public weirdMode: boolean
+	constructor(level: number, weirdMode = false, fretboard: Fretboard = createFretboard(weirdMode)) {
 		this.fretboard = fretboard
 		this.level = level
 		this.createNewRound = () =>{ this.currRound = createRound(this.level, this.fretboard)}
@@ -118,6 +121,7 @@ class GameState {
 		this.skipped = 0;
 		this.guidingHighlightsOn = true;
 		this.devMode = true;
+		this.weirdMode = weirdMode;
 	}
 }
 
