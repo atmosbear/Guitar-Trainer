@@ -12,19 +12,20 @@
 
 	function answer(note) {
 		if ($gStore.started === true) {
-		if (note === $gStore.currRound.A) {
-			document.body.style.backgroundColor = "green";
-			$gStore.userScore++;
-			$gStore.outOf++;
-			$gStore.createNewRound();
-			// $gStore.userScore = $gStore.userScore; // required by Svelte to update the component's appearance
-		} else {
-			document.body.style.backgroundColor = "red";
-			$gStore.outOf++;
+			if (note === $gStore.currRound.A) {
+				document.body.style.backgroundColor = "green";
+				$gStore.userScore++;
+				$gStore.outOf++;
+				$gStore.createNewRound();
+				$gStore.playRoundsNotes(0);
+				// $gStore.userScore = $gStore.userScore; // required by Svelte to update the component's appearance
+			} else {
+				document.body.style.backgroundColor = "red";
+				$gStore.outOf++;
+			}
+			$gStore.userScore = $gStore.userScore; // required by Svelte to update the component's appearance
+			$gStore.outOf = $gStore.outOf;
 		}
-		$gStore.userScore = $gStore.userScore; // required by Svelte to update the component's appearance
-		$gStore.outOf = $gStore.outOf;
-	}
 	}
 
 	function calculateClass(note) {
@@ -55,7 +56,9 @@
 		{#each string as note}
 			<button
 				on:click={() => {
-					play(note);
+					if (note !== $gStore.currRound.A) {
+						play(note);
+					}
 					answer(note);
 				}}
 				disabled={!note.isActive}
