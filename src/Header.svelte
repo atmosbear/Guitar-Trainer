@@ -5,23 +5,35 @@
 <div>
 	<p>Guitar Trainer</p>
 	<button
+		id="startButton"
+		on:click={() => {
+			$gStore.start();
+			$gStore = $gStore; // required by Svelte to update the component's appearance
+		}}>Start</button
+	>
+	<button
 		alt="Skip to the next question"
 		id="skipQButton"
 		on:click={() => {
 			$gStore.createNewRound();
 			$gStore.skipped++;
+			$gStore.playRoundsNotes(0);
 		}}>Skip</button
 	>
 	<button
 		id="replayButton"
 		on:click={() => {
-			$gStore.createNewRound();
+			$gStore.playRoundsNotes(0);
 		}}>Replay sound</button
 	>
 	<button alt="Instructions">?</button>
 </div>
 
 <style>
+	#startButton {
+		width: 6rem;
+		margin-right: 15px;
+	}
 	#replayButton {
 		width: 15rem;
 		margin-right: 15px;

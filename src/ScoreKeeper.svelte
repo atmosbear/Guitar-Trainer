@@ -17,6 +17,11 @@
 <div id="wholeBox">
 	<h1>Game Stats:</h1>
 	<div>
+		<div>
+			Score: {$gStore.userScore} / {$gStore.outOf}
+			({percent}%) ({$gStore.skipped}
+			skipped)
+		</div>
 		Level: {$gStore.level}
 		<button
 			class="changeButton"
@@ -25,14 +30,9 @@
 			}}>Change</button
 		>
 	</div>
-
+	<h1>Settings:</h1>
 	<div>
-		Score: {$gStore.userScore} / {$gStore.outOf}
-		({percent}%) ({$gStore.skipped}
-		skipped)
-	</div>
-	<div>
-		Play with high strings: {$gStore.weirdMode ? "on" : "off"}
+		Play with high strings: {$gStore.topStringsAllowed ? "on" : "off"}
 
 		<button
 			class="changeButton"
@@ -40,7 +40,7 @@
 				gStore.set(
 					new GameState(
 						$gStore.level,
-						!$gStore.weirdMode
+						!$gStore.topStringsAllowed
 					)
 				);
 			}}

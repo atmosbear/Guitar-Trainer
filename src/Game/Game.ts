@@ -1,6 +1,6 @@
 /// <reference path="./Types.d.ts"/>
 import { writable } from "svelte/store"
-import { findSoundFileName } from "./Sounds.js"
+import { findSoundFileName, play } from "./Sounds.js"
 
 export function createFretboard(weirdStringsOK: boolean = false): Fretboard {
 	let n: string[][] = [
@@ -100,32 +100,37 @@ function createRound(level, fretboard: Fretboard): Round {
 }
 
 export class GameState {
-	public fretboard: Fretboard
 	public level: number
-	public currRound: Round
-	public createNewRound: Function
-	public userScore: number
+	public start: Function
 	public outOf: number
-	public guidingHighlightsOn: boolean
-	public devMode: boolean
+	public started: boolean
 	public skipped: number
-	public weirdMode: boolean
+	public devMode: boolean
+	public userScore: number
+	public fretboard: Fretboard
+	public createNewRound: Function
+	public playRoundsNotes: Function
+	public topStringsAllowed: boolean
+	public guidingHighlightsOn: boolean
+	public currRound: Round | undefined
 	constructor(level: number, weirdMode = false, fretboard: Fretboard = createFretboard(weirdMode)) {
 		this.fretboard = fretboard
 		this.level = level
 		this.createNewRound = () =>{ this.currRound = createRound(this.level, this.fretboard)}
-		this.currRound = createRound(level, fretboard)
+		this.playRoundsNotes = (delay: number) => {setTimeout(() => {play(gs.currRound.Q)}, delay); setTimeout(() => {play(gs.currRound.A)}, delay + 1000)}
+		this.currRound = {Q: {x: -100, y: -100, name: "placeholder", isActive: false, soundFile: undefined}, A: {x: -100, y: -100, name: "placeholder", isActive: false, soundFile: undefined}}
 		this.userScore = 0
 		this.outOf = 0
 		this.skipped = 0;
 		this.guidingHighlightsOn = true;
 		this.devMode = true;
-		this.weirdMode = weirdMode;
+		this.topStringsAllowed = weirdMode;
+		this.started = false
+		this.start = () => {this.createNewRound(); this.playRoundsNotes(0); this.started = true}
 	}
 }
 
 export let gs = new GameState(3)
-gs.createNewRound()
 export let gStore = writable(gs)
 // gs.currRound
 // gs.createNewRound()

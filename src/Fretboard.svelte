@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
 	import { generatePossibleAs, gStore } from "./Game/Game";
 	import { findSoundFileName, play } from "./Game/Sounds";
 	let notes = [];
@@ -11,19 +11,20 @@
 	});
 
 	function answer(note) {
+		if ($gStore.started === true) {
 		if (note === $gStore.currRound.A) {
 			document.body.style.backgroundColor = "green";
 			$gStore.userScore++;
 			$gStore.outOf++;
 			$gStore.createNewRound();
-			$gStore.userScore = $gStore.userScore; // required by Svelte to update the component
+			// $gStore.userScore = $gStore.userScore; // required by Svelte to update the component's appearance
 		} else {
 			document.body.style.backgroundColor = "red";
 			$gStore.outOf++;
-			// required by Svelte to update the component
 		}
-		$gStore.userScore = $gStore.userScore;
+		$gStore.userScore = $gStore.userScore; // required by Svelte to update the component's appearance
 		$gStore.outOf = $gStore.outOf;
+	}
 	}
 
 	function calculateClass(note) {
