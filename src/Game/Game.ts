@@ -51,10 +51,17 @@ function generatePossibleQs(fretboard: Fretboard, userPossibleQs: Note[] = []): 
 	}
 	return possibles
 }
+
+
+
 export let ripplesPerLevel: [number, number][][] = [
-	[[-1, 1], [0, 1], [1, 1]],
-	[[2, 2], [1, 0], [-1, 0]],
-	[[-1, -1]]
+	// next: update these with logical ones (look at game.ts and todo-easymedhard and decide), then style.
+	[[2, 2], [0, -1]],
+	[[0, 1], [-1, 1]],
+	[[-1, 0], [-1, 2]],
+	[[2, 0], [-2, -2]],
+	[[0, -2], [-3, 0], [1, 1]]
+
 ]
 export function generatePossibleAs(level: number, Q: Note, fretboard: Fretboard): Note[] {
 	let ripplesInLevel: [number, number][] = []
@@ -130,7 +137,7 @@ export class GameState {
 	}
 }
 
-export let gs = new GameState(3)
+export let gs = new GameState(2)
 export let gStore = writable(gs)
 // gs.currRound
 // gs.createNewRound()

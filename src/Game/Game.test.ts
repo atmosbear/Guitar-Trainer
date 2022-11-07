@@ -19,6 +19,5 @@ describe("test", () => {
 		let pa = generatePossibleAs(1, {x: 0, y: 5, name: "E", isActive: true, soundFile: ""}, gs.fretboard)
 		expect(pa).to.not.contain(gs.fretboard.findFret(0, 0))
 		expect(pa).to.not.contain(gs.fretboard.findFret(0, 4))
-
 	})
 }) 

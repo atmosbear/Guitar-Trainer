@@ -4,12 +4,11 @@
 	import LevelCard from "./LevelCard.svelte";
 	import { ripplesPerLevel } from "../Game/Game";
 	let ripplesInLevel = [];
-	for (let i = 1; i <= 9; i++) {
+	for (let i = 1; i <= 10; i++) {
 		if (ripplesPerLevel[i - 1] !== undefined) {
 			ripplesInLevel.push([...ripplesPerLevel[i - 1]]);
 		}
 	}
-	console.log(ripplesInLevel);
 </script>
 
 <div
@@ -32,8 +31,14 @@
 	h1 {
 		font-size: 4rem;
 		margin-top: 0;
+		margin-bottom: 0;
+		width: 100%;
 	}
 	#centerBox {
+		display: flex;
+		flex-direction: row;
+		flex-wrap:wrap;
+		column-width: 10px;
 		color: white;
 		padding: 2rem;
 		font-size: 3rem;

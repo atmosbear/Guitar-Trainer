@@ -18,7 +18,6 @@
 				$gStore.outOf++;
 				$gStore.createNewRound();
 				$gStore.playRoundsNotes(0);
-				// $gStore.userScore = $gStore.userScore; // required by Svelte to update the component's appearance
 			} else {
 				document.body.style.backgroundColor = "red";
 				$gStore.outOf++;
@@ -71,13 +70,13 @@
 
 <style>
 	.question {
-		background-color: orange;
+		background-color: rgb(242, 218, 5);
 	}
 	.Panswer {
-		background-color: red;
+		background-color: rgb(192, 178, 178);
 	}
 	.answer {
-		background-color: rgb(73, 140, 162);
+		background-color: rgb(255, 1, 1);
 	}
 
 	button {
