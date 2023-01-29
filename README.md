@@ -1,1 +1,1 @@
-Hi! This is one of my first projects. I used Svelte and Typescript (and the awesome Vite and Vitest!) to create this guitar trainer, which lets you quiz yourself and learn to play by ear! Some things do not work, but this is just a super MVP.
+Hi! This is one of my projects. I used Svelte and Typescript (and the awesome Vite and Vitest!) to create this guitar trainer, which lets you quiz yourself and learn to play by ear! Some things do not work, but this is just a super MVP.
